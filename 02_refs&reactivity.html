@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Vue js</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>name: {{user.name}}</p>
+        <p>occupation: {{user.occupation}}</p>
+        <p>age: {{user.age}}</p>
+
+        {{updateAge() }}
+
+    </div>
+    <script>
+        const { createApp, ref, reactive } = Vue;
+        createApp({
+            setup() {
+                /*let user = ref({
+                    name: 'Francis',
+                    occupation: 'dev',
+                    age: 34,
+                });*/
+                // bei reactive es wird kein zusetzliches value gebraucht. man kann kürzer schreiben
+                let user = reactive({
+                    name: 'Francis',
+                    occupation: 'dev',
+                    age: 34,
+                });
+
+                function updateAge() {
+                    setTimeout(() => {
+                        user.age = 19;
+
+                    }, 3000)
+                };
+                /*function changeValue() {
+                    setTimeout(() => {
+                        count.value = 1;
+
+                    }, 3000)
+                } */
+                return {
+                    user,
+                    updateAge,
+
+                }
+            },
+        }).mount('#app')
+
+    </script>
+
+</body>
+
+</html>
