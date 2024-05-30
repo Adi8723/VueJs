@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Vue js</title>
+    <style>
+        .box{
+            background: red;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+      
+      <h1>{{name}}</h1>
+        <div v-on:click="updateName">
+            click me
+        </div>
+        <hr>
+        <div class="box" v-on:mousemove="getCoord">
+            hover me
+        </div>
+        <p>x: {{coord.x}}</p>
+        <p>y:{{coord.y}}</p>
+    </div>
+    <script>
+        const { createApp, ref, reactive } = Vue;
+        createApp({
+            setup() {
+              
+                const name = ref('steve');
+                const coord = ref({x:0,y:0})
+
+                function updateName(){
+                    name.value = 'Adi'
+                }
+
+                function getCoord(event){
+                    coord.value.x = event.clientX
+                    coord.value.y = event.clientY
+                }
+
+                return {
+                    name, updateName, coord, getCoord
+                }
+            },
+        }).mount('#app')
+
+    </script>
+
+</body>
+
+</html>

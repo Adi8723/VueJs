@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Vue js</title>
+    <style>
+        .box{
+            background: red;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+      
+      <h1>{{name}}</h1>
+       <div v-on:click="updateName('Franz')">
+        click me
+       </div>
+       <hr>
+       <form v-on:submit.prevent="handleForm">
+        <input/>
+       <button type="submit">
+        Submit
+       </button>
+       </form>
+    </div>
+    <script>
+        const { createApp, ref, reactive } = Vue;
+        createApp({
+            setup() {
+              
+                const name = ref('steve');
+                
+
+                function updateName(newName){
+                    name.value = newName
+                }
+
+                function handleForm(event){
+                    // event.preventDefault()
+                    console.log('submit form ')
+                }
+                
+                return {
+                    name, updateName, handleForm
+                }
+            },
+        }).mount('#app')
+
+    </script>
+
+</body>
+
+</html>

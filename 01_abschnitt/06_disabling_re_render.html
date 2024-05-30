@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Vue js</title>
+</head>
+
+<body>
+    <div id="app">
+      <h1 v-once>{{name}}</h1>
+      <h1>{{name}}</h1>
+      {{update()}}
+    </div>
+    <script>
+        const { createApp, ref, reactive } = Vue;
+        createApp({
+            setup() {
+              
+                const name = ref('steve');
+
+                function update(){
+                    setTimeout(() =>{
+                        name.value = 'Francis'
+                    },3000)
+                }
+                return {
+                    name, update
+                }
+            },
+        }).mount('#app')
+
+    </script>
+
+</body>
+
+</html>
